@@ -1,0 +1,35 @@
+---
+- name: Install apache and firewal on aws instance
+  hosts: aws
+  become: yes
+
+  tasks:
+  - name: Install apache and firewall
+    yum:
+     name:
+        - httpd
+        - firewalld
+     state: latest
+
+  - name: Starting apache now
+    service:
+      name: httpd
+      state: started
+      enabled: true
+  
+  - name: Starting firewall service now
+    service:
+      name: firewalld
+      state: started
+      enabled: true
+
+  - name: Allow in firewall also
+    firewalld:
+       service: http
+       permanent: true
+       state: enabled
+       immediate: yes
+     
+   
+     
+     

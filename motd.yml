@@ -1,0 +1,8 @@
+---
+- name: Push custom motd message
+  hosts: aws
+  become: yes
+ 
+  tasks:
+  - name: Displaying custom motd message
+    shell: echo "Webserver deployed using Ansible!!!" > /etc/motd
